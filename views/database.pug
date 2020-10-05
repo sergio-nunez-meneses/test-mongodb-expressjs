@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  
+  main
+    div(class="container border my-3")
+
+      div(class="container")
+        div(class="alert alert-success mt-3 pt-3 px-3 alert-dismissible fade show")
+          p(class="my-auto lead") Database #[span(class="font-italic") #{name}] and collection #[span(class="font-italic") #{collection}] successfully created!
+          button(type="button" class="close" data-dismiss="alert") &times;
+
+      div(class="container")
+        form(action="/actions", method="POST")
+          div(class="form-group")
+            label(for="docid") Select an id and press the #[span(class="font-italic") Find | Update | Delete one] buttons
+            select(class="form-control", name="docid")
+              for document in documents
+                option(value=document._id) #{document._id}
+          div(class="form-group")
+            label(for="sentence") Enter new sentence:
+            input(id="sentence", class="form-control", type="text", name="sentence", placeholder="sentence")
+          div(class="form-group")
+            a(class="w-100 my-1 btn btn-lg bg-primary text-white", href="/actions") Find all
+            button(class="w-100 my-1 btn btn-lg bg-primary text-white", type="submit", name="action" value="findone") Find one
+            //- button(class="w-100 my-1 btn btn-lg bg-warning text-white", type="submit", name="action" value="updateone") Update one
+            button(class="w-100 my-1 btn btn-lg bg-danger text-white", type="submit", name="action" value="deleteone") Delete one
+            a(class="nav-link btn btn-lg bg-dark text-white" href="/disconnect") Delete all and disconnect

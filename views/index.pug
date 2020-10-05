@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  main
+    div(class="container border my-3")
+
+      div(class="container p-5 text-center")
+        h1(class="font-weight-bold")= heading
+        h4(class="mt-3 font-italic") Welcome to the database tests
+      
+      div(class="container text-left")
+        p(class="lead") This is a simple test to create a #[span(class="font-weight-bold") MongoDB] database with its corresponding collection and content #[span(class="font-italic") on the fly], inside the #[span(class="font-weight-bold") ExpressJS] environment.
+        
+      div(class="container my-5")
+        form(action="/database", method="POST")
+          div(class="form-group")
+            label(for="coll-name") Enter the name of your collection:
+            input(class="form-control", type="text", name="collname", placeholder="collection name")
+          div(class="form-group")
+            label(for="value") Enter a very long sequence of words separating them with periods:
+            input(class="form-control", type="text", name="collvalue", placeholder="value")
+          div(class="form-group")
+            button(class="w-100 btn btn-lg bg-danger text-white", type="submit") Create Database
